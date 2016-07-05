@@ -1,2 +1,3 @@
 ---
-# defaults file for audio
+# Users to add to the audio (and video) groups.
+audio_users: []
