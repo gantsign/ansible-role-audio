@@ -1,6 +1,8 @@
 Ansible Role: Audio
 ===================
 
+[![Build Status](https://travis-ci.org/gantsign/ansible-role-audio.svg?branch=master)](https://travis-ci.org/gantsign/ansible-role-audio)
+
 Role to enable audio support.
 
 Requirements
