@@ -1,6 +1,6 @@
 galaxy_info:
   author: John Freeman
-  description: Role for installing the atom.io editor.
+  description: Role for enabling audio support.
   company: GantSign Ltd.
   license: MIT
   min_ansible_version: 1.9
