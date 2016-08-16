@@ -1,5 +1,6 @@
 ---
 - name: add specified users to audio and video groups
+  become: yes
   user: 
     name: "{{ item }}"
     groups: 'audio,video'
@@ -7,6 +8,7 @@
   with_items: "{{ audio_users }}"
 
 - name: install audio packages
+  become: yes
   apt:
     name: "{{ item }}"
     state: present
