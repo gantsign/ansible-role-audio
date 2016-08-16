@@ -10,36 +10,16 @@ services:
   - docker
 
 before_install:
-  # Create the docker container
-  - sudo docker run --detach --volume $(pwd):/ansible/ansible-role-audio --name test_dkr ubuntu:14.04 /sbin/init
-
-  # Install dependencies
-  - sudo docker exec test_dkr apt-get -qq update
-  - sudo docker exec test_dkr apt-get -qq -y install libffi-dev
-  - sudo docker exec test_dkr apt-get -qq -y install libssl-dev
-  - sudo docker exec test_dkr apt-get -qq -y install python-dev
-  - sudo docker exec test_dkr apt-get -qq -y install python-pip
-  - sudo docker exec test_dkr apt-get -qq -y install python-apt
-  - sudo docker exec test_dkr apt-get -qq -y install sudo
-  - sudo docker exec test_dkr pip install ansible
-
-  # Verify dependencies installed
-  - sudo docker exec test_dkr ansible --version
-  - sudo docker exec test_dkr sudo -V
-
-  # Configure test user
-  - sudo docker exec test_dkr useradd --home /home/test_usr test_usr
-  - sudo docker exec test_dkr bash -c "echo 'test_usr ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/test_usr"
-  - sudo docker exec test_dkr mkdir -p /home/test_usr/.ansible/tmp
-  - sudo docker exec test_dkr chown root:root /home
-  - 'sudo docker exec test_dkr chmod "u=rwx,go=rx" /home'
-  - sudo docker exec test_dkr chown -R test_usr:test_usr /home/test_usr
-  - 'sudo docker exec test_dkr chmod -R "u=rwx,go=rx" /home/test_usr'
+  # Create the Docker image
+  - sudo docker build --rm --file tests/Dockerfile --tag test_img tests
 
   # Verify test user
-  - sudo docker exec --user test_usr test_dkr sudo ansible --version
+  - sudo docker run --rm --user test_usr test_img sudo ansible --version
 
 script:
+  # Create the Docker container
+  - sudo docker run --detach --volume $(pwd):/ansible/ansible-role-audio --name test_dkr test_img /sbin/init
+
   # Basic role syntax check
   - 'sudo docker exec --user test_usr --tty test_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory --syntax-check tests/test.yml"'
 
