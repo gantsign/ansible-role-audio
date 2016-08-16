@@ -17,17 +17,20 @@ before_install:
   - sudo docker run --rm --user=test_usr test_img sudo ansible --version
 
 script:
+  # Assign the name of the current directory as the repo_name
+  - 'repo_name=${PWD##*/}'
+
   # Create the Docker container
-  - sudo docker run --detach --volume=$(pwd):/ansible/ansible-role-audio --name=test_dkr test_img /sbin/init
+  - sudo docker run --detach --volume=$(pwd):/ansible/$repo_name --name=test_dkr test_img /sbin/init
 
   # Save Docker exec command to an environment variable
   - 'exec_dkr="sudo docker exec --user=test_usr test_dkr"'
 
   # Basic role syntax check
-  - '$exec_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory --syntax-check tests/test.yml"'
+  - '$exec_dkr bash -c "cd /ansible/$repo_name && ansible-playbook -i tests/inventory --syntax-check tests/test.yml"'
 
   # Run the playbook with ansible-playbook
-  - '$exec_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory tests/test.yml"'
+  - '$exec_dkr bash -c "cd /ansible/$repo_name && ansible-playbook -i tests/inventory tests/test.yml"'
 
   # Check the ALSA is installed
   - '$exec_dkr alsactl --version'
