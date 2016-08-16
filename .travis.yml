@@ -11,23 +11,26 @@ services:
 
 before_install:
   # Create the Docker image
-  - sudo docker build --rm --file tests/Dockerfile --tag test_img tests
+  - sudo docker build --rm --file=tests/Dockerfile --tag=test_img tests
 
   # Verify test user
-  - sudo docker run --rm --user test_usr test_img sudo ansible --version
+  - sudo docker run --rm --user=test_usr test_img sudo ansible --version
 
 script:
   # Create the Docker container
-  - sudo docker run --detach --volume $(pwd):/ansible/ansible-role-audio --name test_dkr test_img /sbin/init
+  - sudo docker run --detach --volume=$(pwd):/ansible/ansible-role-audio --name=test_dkr test_img /sbin/init
+
+  # Save Docker exec command to an environment variable
+  - 'exec_dkr="sudo docker exec --user=test_usr test_dkr"'
 
   # Basic role syntax check
-  - 'sudo docker exec --user test_usr --tty test_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory --syntax-check tests/test.yml"'
+  - '$exec_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory --syntax-check tests/test.yml"'
 
   # Run the playbook with ansible-playbook
-  - 'sudo docker exec --user test_usr --tty test_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory tests/test.yml"'
+  - '$exec_dkr bash -c "cd /ansible/ansible-role-audio && ansible-playbook -i tests/inventory tests/test.yml"'
 
   # Check the ALSA is installed
-  - 'sudo docker exec --user test_usr --tty test_dkr alsactl --version'
+  - '$exec_dkr alsactl --version'
 
   # Clean up
   - sudo docker stop test_dkr
