@@ -1,18 +1,20 @@
 FROM ubuntu:14.04
 
-# Install dependencies
+# Update apt
 RUN apt-get -qq update
-RUN apt-get -qq -y install libffi-dev
-RUN apt-get -qq -y install libssl-dev
-RUN apt-get -qq -y install python-dev
-RUN apt-get -qq -y install python-pip
-RUN apt-get -qq -y install python-apt
-RUN apt-get -qq -y install sudo
-RUN pip install ansible
 
-# Verify dependencies installed
-RUN ansible --version
+# Install sudo
+RUN apt-get -qq -y install sudo
 RUN sudo -V
+
+# Install python-pip
+RUN apt-get -qq -y install python-pip
+RUN pip --version
+
+# Install ansible
+RUN apt-get -qq -y install python-yaml python-jinja2 python-httplib2 python-keyczar python-paramiko python-setuptools python-pkg-resources git
+RUN pip install ansible
+RUN ansible --version
 
 # Configure test user
 RUN useradd --home /home/test_usr test_usr
