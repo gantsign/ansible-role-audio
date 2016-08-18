@@ -35,6 +35,11 @@ script:
   # Check the ALSA is installed
   - '$exec_dkr alsactl --version'
 
+  # Check the users groups
+  - '$exec_dkr groups test_usr | grep sudo'
+  - '$exec_dkr groups test_usr | grep audio'
+  - '$exec_dkr groups test_usr | grep video'
+
   # Clean up
   - sudo docker stop test_dkr
   - sudo docker rm test_dkr

@@ -17,7 +17,7 @@ RUN pip install ansible
 RUN ansible --version
 
 # Configure test user
-RUN useradd --home /home/test_usr test_usr
+RUN useradd --home /home/test_usr -G sudo test_usr
 RUN bash -c "echo 'test_usr ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/test_usr"
 RUN mkdir -p /home/test_usr/.ansible/tmp
 RUN chown root:root /home
