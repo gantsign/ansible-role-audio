@@ -1,7 +1,7 @@
 ---
 - name: add specified users to audio and video groups
   become: yes
-  user: 
+  user:
     name: "{{ item }}"
     groups: 'audio,video'
     append: yes

@@ -1,6 +1,24 @@
 ---
-- hosts: localhost
+- hosts: all
   remote_user: root
+
+  pre_tasks:
+    # Required for testing using Docker
+    - name: ensure sudo group exists
+      become: yes
+      group:
+        name: sudo
+        state: present
+
+    - name: ensure test_usr exists
+      become: yes
+      user:
+        name: test_usr
+        home: /home/test_usr
+        createhome: yes
+        groups: sudo
+        append: yes
+
   roles:
     - role: ansible-role-audio
       audio_users:
