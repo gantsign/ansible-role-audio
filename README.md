@@ -32,6 +32,11 @@ Example Playbook
      - { role: gantsign.audio, audio_users: [ 'vagrant' ] }
 ```
 
+More roles from GantSign
+------------------------
+
+You can find more roles from GantSign on [Ansible Galaxy](https://galaxy.ansible.com/gantsign).
+
 Development & Testing
 ---------------------
 
