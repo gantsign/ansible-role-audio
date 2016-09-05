@@ -9,6 +9,7 @@ def test_alsactl(Command):
     cmd = Command('alsactl --version')
     assert cmd.rc == 0
 
+
 @pytest.mark.parametrize('group', [
     ('sudo'),
     ('audio'),
