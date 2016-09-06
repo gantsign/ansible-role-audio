@@ -11,9 +11,9 @@ def test_alsactl(Command):
 
 
 @pytest.mark.parametrize('group', [
-    ('sudo'),
-    ('audio'),
-    ('video')
+    'sudo',
+    'audio',
+    'video'
 ])
 def test_java_tools(User, group):
     usr = User('test_usr')
