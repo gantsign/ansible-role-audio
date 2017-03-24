@@ -2,8 +2,17 @@
 ansible:
   playbook: tests/test.yml
 
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
 docker:
   containers:
   - name: ansible-role-audio-01
     image: ubuntu
     image_version: '14.04'
+
+verifier:
+  name: testinfra
