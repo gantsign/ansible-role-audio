@@ -2,20 +2,20 @@
 - name: add specified users to audio and video groups
   become: yes
   user:
-    name: "{{ item }}"
+    name: '{{ item }}'
     groups: 'audio,video'
     append: yes
-  with_items: "{{ audio_users }}"
+  with_items: '{{ audio_users }}'
 
 - name: install audio packages
   become: yes
   apt:
-    name: "{{ item }}"
+    name: '{{ item }}'
     state: present
   with_items:
     - linux-sound-base
     - alsa-base
     - alsa-utils
-    - "linux-image-{{ ansible_kernel }}"
-    - "linux-image-extra-{{ ansible_kernel }}"
+    - 'linux-image-{{ ansible_kernel }}'
+    - 'linux-image-extra-{{ ansible_kernel }}'
     - libasound2
