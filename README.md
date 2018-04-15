@@ -30,7 +30,9 @@ Example Playbook
 ```yaml
 - hosts: servers
   roles:
-     - { role: gantsign.audio, audio_users: [ 'vagrant' ] }
+    - role: gantsign.audio
+      audio_users:
+        - vagrant
 ```
 
 More Roles From GantSign
