@@ -5,7 +5,6 @@ Ansible Role: Audio
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gantsign.audio-blue.svg)](https://galaxy.ansible.com/gantsign/audio)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gantsign/ansible-role-audio/master/LICENSE)
 
-
 Role to enable audio support.
 
 Requirements
