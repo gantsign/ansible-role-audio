@@ -7,8 +7,8 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_alsactl(Command):
-    cmd = Command('alsactl --version')
+def test_alsactl(host):
+    cmd = host.run('alsactl --version')
     assert cmd.rc == 0
 
 
@@ -17,6 +17,6 @@ def test_alsactl(Command):
     'audio',
     'video'
 ])
-def test_java_tools(User, group):
-    usr = User('test_usr')
+def test_java_tools(host, group):
+    usr = host.user('test_usr')
     assert group in usr.groups
