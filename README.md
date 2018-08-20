@@ -11,7 +11,17 @@ Role to enable audio support.
 Requirements
 ------------
 
-* Ubuntu
+* Ansible >= 2.3
+
+* Linux Distribution
+
+    * Debian Family
+
+        * Ubuntu
+
+            * Xenial (16.04)
+
+        * Note: other versions may work but have not been tested.
 
 Role Variables
 --------------
