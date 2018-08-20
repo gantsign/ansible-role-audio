@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: audio
   author: John Freeman
   description: Role for enabling audio support.
   company: GantSign Ltd.
