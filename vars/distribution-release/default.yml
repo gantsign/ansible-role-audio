@@ -1,0 +1,10 @@
+---
+# Packages to install
+audio_packages:
+  - linux-sound-base
+  - alsa-base
+  - alsa-utils
+  - 'linux-modules-{{ ansible_kernel }}'
+  - 'linux-modules-extra-{{ ansible_kernel }}'
+  - libasound2
+  - pulseaudio

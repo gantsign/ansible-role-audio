@@ -1,4 +1,10 @@
 ---
+- name: load distribution release specific vars
+  with_first_found:
+    - 'distribution-release/{{ ansible_distribution_release }}.yml'
+    - 'distribution-release/default.yml'
+  include_vars: '{{ item }}'
+
 - name: add specified users to audio and video groups
   become: yes
   user:
@@ -12,10 +18,4 @@
   apt:
     name: '{{ item }}'
     state: present
-  with_items:
-    - linux-sound-base
-    - alsa-base
-    - alsa-utils
-    - 'linux-image-{{ ansible_kernel }}'
-    - 'linux-image-extra-{{ ansible_kernel }}'
-    - libasound2
+  with_items: '{{ audio_packages }}'
