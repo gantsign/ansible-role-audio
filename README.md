@@ -19,6 +19,7 @@ Requirements
         * Ubuntu
 
             * Xenial (16.04)
+            * Bionic (18.04)
 
         * Note: other versions may work but have not been tested.
 
