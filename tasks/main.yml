@@ -16,6 +16,5 @@
 - name: install audio packages
   become: yes
   apt:
-    name: '{{ item }}'
+    name: '{{ audio_packages }}'
     state: present
-  with_items: '{{ audio_packages }}'
