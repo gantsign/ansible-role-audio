@@ -4,6 +4,6 @@ audio_packages:
   - linux-sound-base
   - alsa-base
   - alsa-utils
-  - 'linux-image-{{ ansible_kernel }}'
-  - 'linux-image-extra-{{ ansible_kernel }}'
+  - 'linux-modules-{{ ansible_kernel }}'
+  - 'linux-modules-extra-{{ ansible_kernel }}'
   - libasound2
