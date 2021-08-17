@@ -1,7 +1,7 @@
 Ansible Role: Audio
 ===================
 
-[![Build Status](https://travis-ci.com/gantsign/ansible-role-audio.svg?branch=master)](https://travis-ci.com/gantsign/ansible-role-audio)
+[![Tests](https://github.com/gantsign/ansible-role-audio/workflows/Tests/badge.svg)](https://github.com/gantsign/ansible-role-audio/actions?query=workflow%3ATests)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gantsign.audio-blue.svg)](https://galaxy.ansible.com/gantsign/audio)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gantsign/ansible-role-audio/master/LICENSE)
 
