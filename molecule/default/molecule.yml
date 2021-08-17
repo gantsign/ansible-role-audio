@@ -13,7 +13,7 @@ lint: |
 
 platforms:
   - name: ansible-role-audio-01
-    image: ubuntu:16.04
+    image: ubuntu:18.04
 
 provisioner:
   name: ansible
